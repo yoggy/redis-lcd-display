@@ -10,6 +10,12 @@ Display driver program for AQM0802A module
 
 Setup
 ----
+    $ sudo raspi-config
+      // 1. select "8 Advanced Options"→"A7 I2C"
+      // 2. "Would you like the ARM I2C interface to be enabled?" -> yes
+      // 3. "Would you like the I2C kernel module to be loaded by default?" -> yes
+      // 4. quit raspi-config
+    $ reboot
 
     $ sudo apt-get install redis-server
     $ sudo apt-get install git-core
@@ -41,7 +47,7 @@ Compile & Run
 How to use
 ----
 
-    # normal messages 
+    // normal messages 
     $ redis-cli set "lcd:0" "RedisLCDDisplay"
     OK
     $ redis-cli set "lcd:1" "`date +'%m/%d   %H:%M'`"
@@ -49,7 +55,7 @@ How to use
     $ redis-cli set "lcd:2" `LANG=C /sbin/ifconfig | grep -v 127.0.0.1 | grep inet | awk '{print $2}' | sed -e 's/addr://'`
     OK
     
-    # error message
+    // error message
     $ redis-cli set "lcd:err" "err: error string..."
     OK
     $ redis-cli expire "lcd:err" 10
