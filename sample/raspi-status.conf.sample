@@ -17,7 +17,7 @@
 ;     http://supervisord.org/
 ;
 [program:raspi-status]
-command         = /usr/bin/ruby /home/pi/work/redis-oled-display/sample/raspi-status.rb
+command         = /usr/bin/ruby /home/pi/work/redis-lcd-display/sample/raspi-status.rb
 numprocs        = 1
 autostart       = true
 autorestart     = true
