@@ -1,0 +1,27 @@
+;
+; raspi-status.conf - for supervisord configuration file
+;
+; install
+;     $ sudo apt-get install supervisor
+;     $ cd ~/work/redis-oled-display/sample
+;     $ sudo cp raspi-status.conf.sample /etc/supervisor/conf.d/raspi-status.conf
+;     $ sudo vi /etc/supervisor/conf.d/raspi-status.conf
+;       (fix path, etc...)
+;     $ sudo supervisorctl reread
+;     $ sudo supervisorctl add raspi-status
+;     $ sudo supervisorctl status
+;     raspi-status                  RUNNING    pid 8192, uptime 0:00:30
+;
+; see also
+;     Supervisor: A Process Control System
+;     http://supervisord.org/
+;
+[program:raspi-status]
+command         = /usr/bin/ruby /home/pi/work/redis-oled-display/sample/raspi-status.rb
+numprocs        = 1
+autostart       = true
+autorestart     = true
+user            = root
+environment     = HOME=/home/pi/
+redirect_stderr = true
+stdout_logfile  = /dev/null

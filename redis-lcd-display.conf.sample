@@ -1,0 +1,27 @@
+;
+; redis-lcd-display.conf - for supervisord configuration file
+;
+; install
+;     $ sudo apt-get install supervisor
+;     $ cd ~/work/redis-lcd-display/
+;     $ sudo cp redis-lcd-display.conf.sample /etc/supervisor/conf.d/redis-lcd-display.conf
+;     $ sudo vi /etc/supervisor/conf.d/redis-lcd-display.conf
+;       (fix path, etc...)
+;     $ sudo supervisorctl reread
+;     $ sudo supervisorctl add redis-lcd-display
+;     $ sudo supervisorctl status
+;     redis-lcd-display                  RUNNING    pid 8192, uptime 0:00:30
+;
+; see also
+;     Supervisor: A Process Control System
+;     http://supervisord.org/
+;
+[program:redis-lcd-display]
+command         = /home/pi/work/redis-lcd-display/redis-lcd-display
+numprocs        = 1
+autostart       = true
+autorestart     = true
+user            = root
+environment     = HOME=/home/pi/
+redirect_stderr = true
+stdout_logfile  = /dev/null
